@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head'); %> 
+<body>
+    <%- include('./partials/header');%> 
+    
+   <h1><%= objArticle.title %>  </h1>
+   <h3> <%= objArticle.summary %> </h3>
+
+   <p><%= objArticle.body %> </p>
+
+   <button data-Linkid="<%= objArticle._id %> " class="create">
+       Delete
+   </button>
+
+
+    <%- include('./partials/footer'); %> 
+
+
+    <script>
+        const btnelement=document.querySelector(".create")
+        const articleId=btnelement.getAttribute("data-linkid");
+      
+      
+        // what is data ?
+        // answerrrrrrrrrrrrrrrrrr
+      
+      
+        btnelement.addEventListener("click", (eo)=> {
+      
+        fetch(`/all-articles/${ articleId}`, { method: "DELETE" } )
+        .then((response)=> response.json())
+        .then((data)=> console.log(data))
+        .catch((err)=> {
+        console.log(err);
+        } );
+      
+        } )
+      </script>
+</body>
+</html>
